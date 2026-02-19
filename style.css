@@ -117,6 +117,7 @@
 
 .gg-footer {
   margin-top: var(--ax-space-20);
+  text-align: center;
 }
 
 .gg-result-image {
