@@ -108,7 +108,7 @@ export default function ResultCard({ result }) {
 
       <img
         className="gg-result-image"
-        src="/Images/GarageGym.png"
+        src={`${import.meta.env.BASE_URL}Images/GarageGym.png`}
         alt="GarageGym"
         loading="lazy"
       />
