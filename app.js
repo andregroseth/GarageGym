@@ -14,11 +14,57 @@ const BAR_KG = 20
 // Available plates (per side), kg.
 const PLATES_KG = [25, 20, 15, 10, 5, 2.5, 1, 0.5]
 
+// Default inventory is TOTAL plates in the gym (both sides combined).
+// The solver uses PAIRS available (total/2) because loading is mirrored.
+const DEFAULT_INVENTORY_TOTAL = {
+  25: 2,
+  20: 4,
+  15: 4,
+  10: 8,
+  5: 8,
+  2.5: 8,
+  1: 8,
+  0.5: 8,
+}
+
 // Convert kg -> half-kg units (0.5kg = 1 unit) to avoid float errors.
 const toUnits = (kg) => Math.round(kg * 2)
 const fromUnits = (units) => units / 2
 
 const PLATES_UNITS = PLATES_KG.map(toUnits)
+
+function parseNonNegativeInt(value) {
+  const n = Number(String(value).trim())
+  if (!Number.isFinite(n)) return null
+  if (!Number.isInteger(n)) return null
+  if (n < 0) return null
+  return n
+}
+
+function readInventoryPairsFromDom() {
+  const pairs = []
+  for (const plateKg of PLATES_KG) {
+    const el = document.getElementById(`inv-${plateKg}`)
+    const raw = el ? el.value : DEFAULT_INVENTORY_TOTAL[plateKg]
+    const totalCount = parseNonNegativeInt(raw)
+    if (totalCount == null) {
+      return {
+        error: `Inventory for ${formatKg(
+          plateKg,
+        )} kg must be a non-negative whole number.`,
+      }
+    }
+    if (totalCount % 2 !== 0) {
+      return {
+        error: `Inventory for ${formatKg(
+          plateKg,
+        )} kg must be even (so you have matching pairs for both sides).`,
+      }
+    }
+    pairs.push(totalCount / 2)
+  }
+  return { pairs }
+}
 
 function formatKg(kg) {
   // Show .5 if needed; otherwise integer.
@@ -58,7 +104,7 @@ function perSideTargetUnits(totalKg) {
   return (totalUnits - barUnits) / 2
 }
 
-function computeDpSuffixMinPlates(targetUnits) {
+function computeDpSuffixMinPlates(targetUnits, availPairs) {
   const n = PLATES_UNITS.length
   const INF = 1_000_000
 
@@ -72,7 +118,7 @@ function computeDpSuffixMinPlates(targetUnits) {
     const w = PLATES_UNITS[i]
     for (let amt = 0; amt <= targetUnits; amt++) {
       let best = INF
-      const maxCount = Math.floor(amt / w)
+      const maxCount = Math.min(Math.floor(amt / w), availPairs[i])
       for (let c = 0; c <= maxCount; c++) {
         const rem = amt - c * w
         const candidate = c + dp[i + 1][rem]
@@ -85,8 +131,8 @@ function computeDpSuffixMinPlates(targetUnits) {
   return dp
 }
 
-function generateAllOptimalCombos(targetUnits, comboLimit = 800) {
-  const dp = computeDpSuffixMinPlates(targetUnits)
+function generateAllOptimalCombos(targetUnits, availPairs, comboLimit = 800) {
+  const dp = computeDpSuffixMinPlates(targetUnits, availPairs)
   const n = PLATES_UNITS.length
   const INF = 1_000_000
 
@@ -108,7 +154,7 @@ function generateAllOptimalCombos(targetUnits, comboLimit = 800) {
     const need = dp[i][amt]
     if (need >= INF) return
 
-    const maxCount = Math.floor(amt / w)
+    const maxCount = Math.min(Math.floor(amt / w), availPairs[i])
     for (let c = 0; c <= maxCount; c++) {
       const rem = amt - c * w
       if (c + dp[i + 1][rem] === need) {
@@ -136,9 +182,13 @@ function sumPlates(counts) {
   return counts.reduce((a, b) => a + b, 0)
 }
 
-function chooseBestTransition(currentTargetUnits, desiredTargetUnits) {
-  const current = generateAllOptimalCombos(currentTargetUnits, 800)
-  const desired = generateAllOptimalCombos(desiredTargetUnits, 800)
+function chooseBestTransition(
+  currentTargetUnits,
+  desiredTargetUnits,
+  availPairs,
+) {
+  const current = generateAllOptimalCombos(currentTargetUnits, availPairs, 800)
+  const desired = generateAllOptimalCombos(desiredTargetUnits, availPairs, 800)
 
   if (current.minPlates == null) {
     return { error: 'Current weight can’t be made with the available plates.' }
@@ -284,6 +334,12 @@ function onSubmit(e) {
   setError('')
   setResultHidden(true)
 
+  const inventory = readInventoryPairsFromDom()
+  if (inventory.error) {
+    setError(inventory.error)
+    return
+  }
+
   const currentKg = parseKgInput(document.getElementById('currentWeight').value)
   const desiredKg = parseKgInput(document.getElementById('desiredWeight').value)
 
@@ -306,7 +362,11 @@ function onSubmit(e) {
   const currentTarget = perSideTargetUnits(currentKg)
   const desiredTarget = perSideTargetUnits(desiredKg)
 
-  const best = chooseBestTransition(currentTarget, desiredTarget)
+  const best = chooseBestTransition(
+    currentTarget,
+    desiredTarget,
+    inventory.pairs,
+  )
   if (!best || best.error) {
     setError(best?.error || 'No solution found.')
     return

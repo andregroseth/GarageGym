@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GarageGym — Plate Change Minimizer</title>
+    <link rel="icon" href="./Images/GarageGym.ico" sizes="any" />
+    <link rel="shortcut icon" href="./Images/GarageGym.ico" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -51,6 +53,107 @@
           <div class="hint">
             Assumes a <strong>20 kg</strong> Olympic bar. Available plates (per
             side): 25, 20, 15, 10, 5, 2.5, 1, 0.5 kg.
+          </div>
+
+          <div class="inventory">
+            <div class="inventory-title">
+              Available plates (total in your gym)
+            </div>
+            <div class="inventory-grid">
+              <label class="inv-field">
+                <span>25 kg</span>
+                <input
+                  id="inv-25"
+                  type="number"
+                  inputmode="numeric"
+                  step="1"
+                  min="0"
+                  value="2"
+                />
+              </label>
+              <label class="inv-field">
+                <span>20 kg</span>
+                <input
+                  id="inv-20"
+                  type="number"
+                  inputmode="numeric"
+                  step="1"
+                  min="0"
+                  value="4"
+                />
+              </label>
+              <label class="inv-field">
+                <span>15 kg</span>
+                <input
+                  id="inv-15"
+                  type="number"
+                  inputmode="numeric"
+                  step="1"
+                  min="0"
+                  value="4"
+                />
+              </label>
+              <label class="inv-field">
+                <span>10 kg</span>
+                <input
+                  id="inv-10"
+                  type="number"
+                  inputmode="numeric"
+                  step="1"
+                  min="0"
+                  value="8"
+                />
+              </label>
+              <label class="inv-field">
+                <span>5 kg</span>
+                <input
+                  id="inv-5"
+                  type="number"
+                  inputmode="numeric"
+                  step="1"
+                  min="0"
+                  value="8"
+                />
+              </label>
+              <label class="inv-field">
+                <span>2.5 kg</span>
+                <input
+                  id="inv-2.5"
+                  type="number"
+                  inputmode="numeric"
+                  step="1"
+                  min="0"
+                  value="8"
+                />
+              </label>
+              <label class="inv-field">
+                <span>1 kg</span>
+                <input
+                  id="inv-1"
+                  type="number"
+                  inputmode="numeric"
+                  step="1"
+                  min="0"
+                  value="8"
+                />
+              </label>
+              <label class="inv-field">
+                <span>0.5 kg</span>
+                <input
+                  id="inv-0.5"
+                  type="number"
+                  inputmode="numeric"
+                  step="1"
+                  min="0"
+                  value="8"
+                />
+              </label>
+            </div>
+            <div class="hint">
+              These are <strong>total plates</strong>. For symmetric loading,
+              each side uses one plate from a matching pair (so totals should be
+              even).
+            </div>
           </div>
 
           <div class="actions">

@@ -103,6 +103,45 @@ input[type='number']:focus {
   color: #374151;
 }
 
+.inventory {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.inventory-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (min-width: 720px) {
+  .inventory-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.inv-field {
+  display: grid;
+  gap: 6px;
+}
+
+.inv-field span {
+  font-size: 13px;
+  color: #374151;
+}
+
+.inv-field input[type='number'] {
+  padding: 10px 10px;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;
