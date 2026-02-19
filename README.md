@@ -27,7 +27,7 @@ npm install
 npm run dev
 ```
 
-Then open the URL Vite prints (usually `http://localhost:5173`).
+Then open `http://localhost:3000`.
 
 ## Build
 
@@ -35,3 +35,13 @@ Then open the URL Vite prints (usually `http://localhost:5173`).
 npm run build
 npm run preview
 ```
+
+## GitHub Pages
+
+This repo includes a GitHub Actions workflow that builds and deploys to GitHub Pages.
+
+1. In GitHub, go to **Settings → Pages**
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**
+3. Push to `main`
+
+For project pages (published under `/<repo>/`), the build sets Vite's base path automatically using the repo name.
