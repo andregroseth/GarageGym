@@ -182,51 +182,51 @@ button:disabled {
 }
 
 /* Plate color coding (matches common gym plate conventions as requested) */
-.pill[data-plate="25"] {
+.pill[data-plate='25'] {
   background: #ef4444;
   border-color: #b91c1c;
   color: #ffffff;
 }
 
-.pill[data-plate="20"] {
+.pill[data-plate='20'] {
   background: #2563eb;
   border-color: #1e40af;
   color: #ffffff;
 }
 
-.pill[data-plate="15"] {
+.pill[data-plate='15'] {
   background: #facc15;
   border-color: #a16207;
   color: #111827;
 }
 
-.pill[data-plate="10"] {
+.pill[data-plate='10'] {
   background: #16a34a;
   border-color: #14532d;
   color: #ffffff;
 }
 
-.pill[data-plate="5"] {
+.pill[data-plate='5'] {
   background: #92400e;
   border-color: #78350f;
   color: #ffffff;
 }
 
-.pill[data-plate="2.5"] {
+.pill[data-plate='2.5'] {
   background: #111827;
   border-color: #000000;
   color: #ffffff;
 }
 
 /* 1kg: red (distinct shade from 25kg) */
-.pill[data-plate="1"] {
+.pill[data-plate='1'] {
   background: #991b1b;
   border-color: #7f1d1d;
   color: #ffffff;
 }
 
 /* 0.5kg: yellow (distinct shade from 15kg) */
-.pill[data-plate="0.5"] {
+.pill[data-plate='0.5'] {
   background: #f59e0b;
   border-color: #b45309;
   color: #111827;
