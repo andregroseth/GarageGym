@@ -15,7 +15,7 @@ import {
 } from './solver/plates.js'
 
 export default function App() {
-  const [isDark, setIsDark] = useState(false)
+  const [isDark, setIsDark] = useState(true)
 
   const [currentWeight, setCurrentWeight] = useState('20')
   const [desiredWeight, setDesiredWeight] = useState('')
@@ -32,14 +32,6 @@ export default function App() {
   const [result, setResult] = useState(null)
 
   const resultRef = useRef(null)
-
-  useEffect(() => {
-    const prefersDark = Boolean(
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches,
-    )
-    setIsDark(prefersDark)
-  }, [])
 
   useEffect(() => {
     document.body.classList.toggle('dark', isDark)
