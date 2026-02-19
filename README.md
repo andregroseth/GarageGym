@@ -19,27 +19,19 @@ The calculator can respect your available plates.
 
 ## Run
 
-Open [index.html](index.html) in your browser.
-
-This project uses NAV Aksel styling via `@navikt/ds-css`.
-
-If your browser blocks local scripts, run a local server.
-
-### Option A: npm
+This is a Vite + React app using NAV Aksel styling via `@navikt/ds-css`.
 
 ```bash
 cd GarageGym
 npm install
-npm start
+npm run dev
 ```
 
-Then open `http://localhost:3000`.
+Then open the URL Vite prints (usually `http://localhost:5173`).
 
-### Option B: Python
+## Build
 
 ```bash
-cd GarageGym
-python3 -m http.server 5173
+npm run build
+npm run preview
 ```
-
-Then open `http://localhost:5173`.

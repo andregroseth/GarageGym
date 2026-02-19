@@ -1,13 +1,19 @@
 {
   "name": "garagegym",
   "private": true,
-  "version": "0.1.0",
-  "description": "Plate change minimizer (static web app)",
+  "version": "0.2.0",
+  "description": "Plate change minimizer (React app)",
   "scripts": {
-    "start": "http-server . -p ${PORT:-3000} -c-1",
-    "dev": "http-server . -p ${PORT:-3000} -c-1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.14"
   }
 }
