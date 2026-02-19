@@ -490,8 +490,8 @@ function main() {
   })
 
   // Nice default examples.
-  document.getElementById('currentWeight').value = '100'
-  document.getElementById('desiredWeight').value = '140'
+  document.getElementById('currentWeight').value = '20'
+  document.getElementById('desiredWeight').value = ''
 }
 
 main()
