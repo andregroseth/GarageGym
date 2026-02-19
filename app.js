@@ -437,14 +437,45 @@ function setupExpansionCard(cardEl) {
     header.dataset.open === 'true' || content.dataset.open === 'true'
   setOpen(initialOpen)
 
-  toggle.addEventListener('click', (e) => {
+  const onToggle = (e) => {
     e.preventDefault()
     const nextOpen = header.dataset.open !== 'true'
     setOpen(nextOpen)
+  }
+
+  toggle.addEventListener('click', (e) => {
+    onToggle(e)
+  })
+
+  // Aksel's intent is that the whole header is clickable.
+  header.addEventListener('click', (e) => {
+    if (toggle.contains(e.target)) return
+    onToggle(e)
+  })
+}
+
+function setupThemeToggle() {
+  const toggle = document.getElementById('themeToggle')
+  if (!toggle) return
+
+  const setDark = (isDark) => {
+    document.body.classList.toggle('dark', isDark)
+    toggle.checked = isDark
+  }
+
+  const prefersDark = Boolean(
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches,
+  )
+  setDark(prefersDark)
+
+  toggle.addEventListener('change', () => {
+    setDark(toggle.checked)
   })
 }
 
 function main() {
+  setupThemeToggle()
   setupExpansionCard(document.getElementById('inventoryCard'))
 
   const form = document.getElementById('plate-form')

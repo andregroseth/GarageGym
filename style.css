@@ -3,6 +3,22 @@
   font-variant-numeric: tabular-nums;
 }
 
+.gg-topbar-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--ax-space-12);
+  width: 100%;
+}
+
+.gg-topbar-title {
+  display: flex;
+  align-items: center;
+}
+
+.gg-topbar-spacer {
+  flex: 1;
+}
+
 .gg-main {
   padding-block: max(var(--ax-space-24), env(safe-area-inset-top));
   padding-inline: max(var(--ax-space-16), env(safe-area-inset-left))
@@ -101,6 +117,15 @@
 
 .gg-footer {
   margin-top: var(--ax-space-20);
+}
+
+.gg-result-image {
+  display: block;
+  max-width: min(22rem, 100%);
+  height: auto;
+  margin-top: var(--ax-space-16);
+  margin-inline: auto;
+  border-radius: var(--ax-radius-12);
 }
 
 /* Aksel chips, with custom plate colors */
