@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GarageGym — Plate Change Minimizer</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>Plate Change Minimizer</h1>
+        <p class="subtle">
+          Finds a minimal-operation way to change an Olympic bar from one weight
+          to another using mirrored plates.
+        </p>
+      </header>
+
+      <section class="card">
+        <form id="plate-form" class="form" novalidate>
+          <div class="row">
+            <label class="field">
+              <span>Current total weight (kg)</span>
+              <input
+                id="currentWeight"
+                name="currentWeight"
+                type="number"
+                inputmode="decimal"
+                step="0.5"
+                min="0"
+                placeholder="e.g. 100"
+                required
+              />
+            </label>
+
+            <label class="field">
+              <span>Desired total weight (kg)</span>
+              <input
+                id="desiredWeight"
+                name="desiredWeight"
+                type="number"
+                inputmode="decimal"
+                step="0.5"
+                min="0"
+                placeholder="e.g. 140"
+                required
+              />
+            </label>
+          </div>
+
+          <div class="hint">
+            Assumes a <strong>20 kg</strong> Olympic bar. Available plates (per
+            side): 25, 20, 15, 10, 5, 2.5, 1, 0.5 kg.
+          </div>
+
+          <div class="actions">
+            <button type="submit">Compute best change</button>
+            <button id="swap" type="button" class="secondary">Swap</button>
+            <button id="reset" type="button" class="secondary">Reset</button>
+          </div>
+
+          <div id="error" class="error" role="alert" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section id="result" class="card" hidden>
+        <h2>Result</h2>
+
+        <div class="summary" id="summary"></div>
+
+        <div class="grid">
+          <div>
+            <h3>Current plates (per side)</h3>
+            <div id="currentPlates" class="plates"></div>
+          </div>
+
+          <div>
+            <h3>Desired plates (per side)</h3>
+            <div id="desiredPlates" class="plates"></div>
+          </div>
+        </div>
+
+        <h3>Changes</h3>
+        <div id="changes" class="changes"></div>
+        <p class="subtle">
+          Operations are counted as
+          <strong>plate-pair moves</strong> (add/remove a matching plate on both
+          sides counts as 1).
+        </p>
+      </section>
+
+      <footer class="footer subtle">Built for quick garage-gym math.</footer>
+    </main>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>

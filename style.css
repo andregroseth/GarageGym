@@ -1,0 +1,275 @@
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  background: #f6f7fb;
+  color: #111827;
+}
+
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 24px;
+  padding-left: max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
+  padding-top: max(24px, env(safe-area-inset-top));
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.subtle {
+  color: #4b5563;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0;
+}
+
+.form .row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 720px) {
+  .form .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field span {
+  font-size: 14px;
+  color: #374151;
+}
+
+input[type='number'] {
+  width: 100%;
+  padding: 12px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+input[type='number']:focus {
+  outline: 2px solid #c7d2fe;
+  border-color: #818cf8;
+}
+
+.hint {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+button {
+  appearance: none;
+  border: 1px solid #111827;
+  background: #111827;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: 2px solid #c7d2fe;
+  outline-offset: 2px;
+}
+
+button.secondary {
+  background: transparent;
+  color: #111827;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  margin-top: 10px;
+  color: #b91c1c;
+  font-size: 14px;
+  min-height: 1.2em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+@media (min-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.plates,
+.changes,
+.summary {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.pill {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #111827;
+  margin: 0 6px 6px 0;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.pill.muted {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #374151;
+}
+
+/* Plate color coding (matches common gym plate conventions as requested) */
+.pill[data-plate="25"] {
+  background: #ef4444;
+  border-color: #b91c1c;
+  color: #ffffff;
+}
+
+.pill[data-plate="20"] {
+  background: #2563eb;
+  border-color: #1e40af;
+  color: #ffffff;
+}
+
+.pill[data-plate="15"] {
+  background: #facc15;
+  border-color: #a16207;
+  color: #111827;
+}
+
+.pill[data-plate="10"] {
+  background: #16a34a;
+  border-color: #14532d;
+  color: #ffffff;
+}
+
+.pill[data-plate="5"] {
+  background: #92400e;
+  border-color: #78350f;
+  color: #ffffff;
+}
+
+.pill[data-plate="2.5"] {
+  background: #111827;
+  border-color: #000000;
+  color: #ffffff;
+}
+
+/* 1kg: red (distinct shade from 25kg) */
+.pill[data-plate="1"] {
+  background: #991b1b;
+  border-color: #7f1d1d;
+  color: #ffffff;
+}
+
+/* 0.5kg: yellow (distinct shade from 15kg) */
+.pill[data-plate="0.5"] {
+  background: #f59e0b;
+  border-color: #b45309;
+  color: #111827;
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.footer {
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .actions {
+    gap: 10px;
+  }
+
+  .actions button {
+    flex: 1 1 100%;
+  }
+
+  .actions button.secondary {
+    flex: 1 1 calc(50% - 6px);
+  }
+}
