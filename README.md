@@ -21,7 +21,21 @@ The calculator can respect your available plates.
 
 Open [index.html](index.html) in your browser.
 
-If your browser blocks local scripts, run a tiny local server:
+This project uses NAV Aksel styling via `@navikt/ds-css`.
+
+If your browser blocks local scripts, run a local server.
+
+### Option A: npm
+
+```bash
+cd GarageGym
+npm install
+npm start
+```
+
+Then open `http://localhost:3000`.
+
+### Option B: Python
 
 ```bash
 cd GarageGym

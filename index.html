@@ -6,194 +6,329 @@
     <title>GarageGym — Plate Change Minimizer</title>
     <link rel="icon" href="./Images/GarageGym.ico" sizes="any" />
     <link rel="shortcut icon" href="./Images/GarageGym.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@navikt/ds-css@8.5.2/dist/index.css"
+    />
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body>
-    <main class="container">
-      <header class="header">
-        <h1>Plate Change Minimizer</h1>
-        <p class="subtle">
-          Finds a minimal-operation way to change an Olympic bar from one weight
-          to another using mirrored plates.
-        </p>
-      </header>
+  <body class="aksel-theme" data-background="true">
+    <div class="aksel-page">
+      <main
+        class="aksel-pageblock aksel-pageblock--md aksel-pageblock--gutters gg-main"
+      >
+        <header class="gg-header">
+          <h1 class="aksel-heading aksel-heading--large">
+            Plate Change Minimizer
+          </h1>
+          <p
+            class="aksel-body-long aksel-body-long--small aksel-typo--color-subtle"
+          >
+            Finds a minimal-operation way to change an Olympic bar from one
+            weight to another using mirrored plates.
+          </p>
+        </header>
 
-      <section class="card">
-        <form id="plate-form" class="form" novalidate>
-          <div class="row">
-            <label class="field">
-              <span>Current total weight (kg)</span>
-              <input
-                id="currentWeight"
-                name="currentWeight"
-                type="number"
-                inputmode="decimal"
-                step="0.5"
-                min="0"
-                placeholder="e.g. 100"
-                required
-              />
-            </label>
+        <section class="gg-card">
+          <form id="plate-form" class="gg-form" novalidate>
+            <div class="gg-row">
+              <div class="aksel-form-field">
+                <label
+                  class="aksel-label aksel-label--small"
+                  for="currentWeight"
+                  >Current total weight (kg)</label
+                >
+                <input
+                  class="aksel-text-field__input"
+                  id="currentWeight"
+                  name="currentWeight"
+                  type="number"
+                  inputmode="decimal"
+                  step="0.5"
+                  min="0"
+                  placeholder="e.g. 100"
+                  required
+                />
+              </div>
 
-            <label class="field">
-              <span>Desired total weight (kg)</span>
-              <input
-                id="desiredWeight"
-                name="desiredWeight"
-                type="number"
-                inputmode="decimal"
-                step="0.5"
-                min="0"
-                placeholder="e.g. 140"
-                required
-              />
-            </label>
-          </div>
-
-          <div class="hint">
-            Assumes a <strong>20 kg</strong> Olympic bar. Available plates (per
-            side): 25, 20, 15, 10, 5, 2.5, 1, 0.5 kg.
-          </div>
-
-          <div class="inventory">
-            <div class="inventory-title">
-              Available plates (total in your gym)
+              <div class="aksel-form-field">
+                <label
+                  class="aksel-label aksel-label--small"
+                  for="desiredWeight"
+                  >Desired total weight (kg)</label
+                >
+                <input
+                  class="aksel-text-field__input"
+                  id="desiredWeight"
+                  name="desiredWeight"
+                  type="number"
+                  inputmode="decimal"
+                  step="0.5"
+                  min="0"
+                  placeholder="e.g. 140"
+                  required
+                />
+              </div>
             </div>
-            <div class="inventory-grid">
-              <label class="inv-field">
-                <span>25 kg</span>
-                <input
-                  id="inv-25"
-                  type="number"
-                  inputmode="numeric"
-                  step="1"
-                  min="0"
-                  value="2"
-                />
-              </label>
-              <label class="inv-field">
-                <span>20 kg</span>
-                <input
-                  id="inv-20"
-                  type="number"
-                  inputmode="numeric"
-                  step="1"
-                  min="0"
-                  value="4"
-                />
-              </label>
-              <label class="inv-field">
-                <span>15 kg</span>
-                <input
-                  id="inv-15"
-                  type="number"
-                  inputmode="numeric"
-                  step="1"
-                  min="0"
-                  value="4"
-                />
-              </label>
-              <label class="inv-field">
-                <span>10 kg</span>
-                <input
-                  id="inv-10"
-                  type="number"
-                  inputmode="numeric"
-                  step="1"
-                  min="0"
-                  value="8"
-                />
-              </label>
-              <label class="inv-field">
-                <span>5 kg</span>
-                <input
-                  id="inv-5"
-                  type="number"
-                  inputmode="numeric"
-                  step="1"
-                  min="0"
-                  value="8"
-                />
-              </label>
-              <label class="inv-field">
-                <span>2.5 kg</span>
-                <input
-                  id="inv-2.5"
-                  type="number"
-                  inputmode="numeric"
-                  step="1"
-                  min="0"
-                  value="8"
-                />
-              </label>
-              <label class="inv-field">
-                <span>1 kg</span>
-                <input
-                  id="inv-1"
-                  type="number"
-                  inputmode="numeric"
-                  step="1"
-                  min="0"
-                  value="8"
-                />
-              </label>
-              <label class="inv-field">
-                <span>0.5 kg</span>
-                <input
-                  id="inv-0.5"
-                  type="number"
-                  inputmode="numeric"
-                  step="1"
-                  min="0"
-                  value="8"
-                />
-              </label>
+
+            <p
+              class="aksel-body-short aksel-body-short--small aksel-typo--color-subtle gg-hint"
+            >
+              Assumes a <strong>20 kg</strong> Olympic bar. Available plates
+              (per side): 25, 20, 15, 10, 5, 2.5, 1, 0.5 kg.
+            </p>
+
+            <div
+              class="aksel-expansioncard aksel-expansioncard--small gg-inventory"
+              data-color="neutral"
+              id="inventoryCard"
+            >
+              <div class="aksel-expansioncard__header" data-open="true">
+                <h2
+                  class="aksel-heading aksel-heading--xsmall aksel-expansioncard__title--small gg-inventory-title"
+                >
+                  Available plates (total in your gym)
+                </h2>
+                <button
+                  type="button"
+                  class="aksel-expansioncard__header-button"
+                  id="inventoryCardToggle"
+                  aria-label="Toggle available plates"
+                  aria-expanded="true"
+                  aria-controls="inventoryCardContent"
+                >
+                  <svg
+                    class="aksel-expansioncard__header-chevron"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M6 9l6 6 6-6"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div
+                class="aksel-expansioncard__content"
+                data-open="true"
+                id="inventoryCardContent"
+              >
+                <div class="aksel-expansioncard__content-inner">
+                  <div class="gg-inventory-grid">
+                    <div class="aksel-form-field gg-inv-field">
+                      <label class="aksel-label aksel-label--small" for="inv-25"
+                        >25 kg</label
+                      >
+                      <input
+                        class="aksel-text-field__input gg-inv-input"
+                        id="inv-25"
+                        type="number"
+                        inputmode="numeric"
+                        step="1"
+                        min="0"
+                        value="2"
+                      />
+                    </div>
+                    <div class="aksel-form-field gg-inv-field">
+                      <label class="aksel-label aksel-label--small" for="inv-20"
+                        >20 kg</label
+                      >
+                      <input
+                        class="aksel-text-field__input gg-inv-input"
+                        id="inv-20"
+                        type="number"
+                        inputmode="numeric"
+                        step="1"
+                        min="0"
+                        value="4"
+                      />
+                    </div>
+                    <div class="aksel-form-field gg-inv-field">
+                      <label class="aksel-label aksel-label--small" for="inv-15"
+                        >15 kg</label
+                      >
+                      <input
+                        class="aksel-text-field__input gg-inv-input"
+                        id="inv-15"
+                        type="number"
+                        inputmode="numeric"
+                        step="1"
+                        min="0"
+                        value="4"
+                      />
+                    </div>
+                    <div class="aksel-form-field gg-inv-field">
+                      <label class="aksel-label aksel-label--small" for="inv-10"
+                        >10 kg</label
+                      >
+                      <input
+                        class="aksel-text-field__input gg-inv-input"
+                        id="inv-10"
+                        type="number"
+                        inputmode="numeric"
+                        step="1"
+                        min="0"
+                        value="8"
+                      />
+                    </div>
+                    <div class="aksel-form-field gg-inv-field">
+                      <label class="aksel-label aksel-label--small" for="inv-5"
+                        >5 kg</label
+                      >
+                      <input
+                        class="aksel-text-field__input gg-inv-input"
+                        id="inv-5"
+                        type="number"
+                        inputmode="numeric"
+                        step="1"
+                        min="0"
+                        value="8"
+                      />
+                    </div>
+                    <div class="aksel-form-field gg-inv-field">
+                      <label
+                        class="aksel-label aksel-label--small"
+                        for="inv-2.5"
+                        >2.5 kg</label
+                      >
+                      <input
+                        class="aksel-text-field__input gg-inv-input"
+                        id="inv-2.5"
+                        type="number"
+                        inputmode="numeric"
+                        step="1"
+                        min="0"
+                        value="8"
+                      />
+                    </div>
+                    <div class="aksel-form-field gg-inv-field">
+                      <label class="aksel-label aksel-label--small" for="inv-1"
+                        >1 kg</label
+                      >
+                      <input
+                        class="aksel-text-field__input gg-inv-input"
+                        id="inv-1"
+                        type="number"
+                        inputmode="numeric"
+                        step="1"
+                        min="0"
+                        value="8"
+                      />
+                    </div>
+                    <div class="aksel-form-field gg-inv-field">
+                      <label
+                        class="aksel-label aksel-label--small"
+                        for="inv-0.5"
+                        >0.5 kg</label
+                      >
+                      <input
+                        class="aksel-text-field__input gg-inv-input"
+                        id="inv-0.5"
+                        type="number"
+                        inputmode="numeric"
+                        step="1"
+                        min="0"
+                        value="8"
+                      />
+                    </div>
+                  </div>
+                  <p
+                    class="aksel-body-short aksel-body-short--small aksel-typo--color-subtle gg-hint"
+                  >
+                    These are <strong>total plates</strong>. For symmetric
+                    loading, each side uses one plate from a matching pair (so
+                    totals should be even).
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="hint">
-              These are <strong>total plates</strong>. For symmetric loading,
-              each side uses one plate from a matching pair (so totals should be
-              even).
+
+            <div class="gg-actions">
+              <button
+                type="submit"
+                class="aksel-button"
+                data-variant="primary"
+                data-color="accent"
+              >
+                Compute best change
+              </button>
+              <button
+                id="swap"
+                type="button"
+                class="aksel-button"
+                data-variant="secondary"
+                data-color="neutral"
+              >
+                Swap
+              </button>
+              <button
+                id="reset"
+                type="button"
+                class="aksel-button"
+                data-variant="secondary"
+                data-color="neutral"
+              >
+                Reset
+              </button>
+            </div>
+
+            <div
+              id="error"
+              class="aksel-error-message aksel-body-short aksel-body-short--small gg-error"
+              role="alert"
+              aria-live="polite"
+            ></div>
+          </form>
+        </section>
+
+        <section id="result" class="gg-card" hidden>
+          <h2 class="aksel-heading aksel-heading--medium">Result</h2>
+
+          <div class="gg-summary" id="summary"></div>
+
+          <div class="gg-grid">
+            <div>
+              <h3 class="aksel-heading aksel-heading--xsmall">
+                Current plates (per side)
+              </h3>
+              <div id="currentPlates" class="gg-plates"></div>
+            </div>
+
+            <div>
+              <h3 class="aksel-heading aksel-heading--xsmall">
+                Desired plates (per side)
+              </h3>
+              <div id="desiredPlates" class="gg-plates"></div>
             </div>
           </div>
 
-          <div class="actions">
-            <button type="submit">Compute best change</button>
-            <button id="swap" type="button" class="secondary">Swap</button>
-            <button id="reset" type="button" class="secondary">Reset</button>
-          </div>
+          <h3 class="aksel-heading aksel-heading--xsmall">Changes</h3>
+          <div id="changes" class="gg-changes"></div>
+          <p
+            class="aksel-body-short aksel-body-short--small aksel-typo--color-subtle"
+          >
+            Operations are counted as
+            <strong>plate-pair moves</strong> (add/remove a matching plate on
+            both sides counts as 1).
+          </p>
+        </section>
 
-          <div id="error" class="error" role="alert" aria-live="polite"></div>
-        </form>
-      </section>
-
-      <section id="result" class="card" hidden>
-        <h2>Result</h2>
-
-        <div class="summary" id="summary"></div>
-
-        <div class="grid">
-          <div>
-            <h3>Current plates (per side)</h3>
-            <div id="currentPlates" class="plates"></div>
-          </div>
-
-          <div>
-            <h3>Desired plates (per side)</h3>
-            <div id="desiredPlates" class="plates"></div>
-          </div>
-        </div>
-
-        <h3>Changes</h3>
-        <div id="changes" class="changes"></div>
-        <p class="subtle">
-          Operations are counted as
-          <strong>plate-pair moves</strong> (add/remove a matching plate on both
-          sides counts as 1).
-        </p>
-      </section>
-
-      <footer class="footer subtle">Built for quick garage-gym math.</footer>
-    </main>
+        <footer
+          class="aksel-detail aksel-detail--small aksel-typo--color-subtle gg-footer"
+        >
+          Built for quick garage-gym math.
+        </footer>
+      </main>
+    </div>
 
     <script src="./app.js" defer></script>
   </body>

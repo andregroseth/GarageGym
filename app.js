@@ -234,20 +234,30 @@ function countsToPlateList(counts) {
 function renderPlatePills(container, counts) {
   container.textContent = ''
   const plates = countsToPlateList(counts)
+
+  const list = document.createElement('ul')
+  list.className =
+    'aksel-chips aksel-chips--readonly aksel-chips--small plate-chips'
+  container.appendChild(list)
+
   if (plates.length === 0) {
-    const pill = document.createElement('span')
-    pill.className = 'pill muted'
-    pill.textContent = 'No plates'
-    container.appendChild(pill)
+    const li = document.createElement('li')
+    const chip = document.createElement('span')
+    chip.className = 'aksel-chips__chip plate-chip plate-chip--muted'
+    chip.textContent = 'No plates'
+    li.appendChild(chip)
+    list.appendChild(li)
     return
   }
 
   for (const p of plates) {
-    const pill = document.createElement('span')
-    pill.className = 'pill'
-    pill.dataset.plate = String(p)
-    pill.textContent = `${formatKg(p)} kg`
-    container.appendChild(pill)
+    const li = document.createElement('li')
+    const chip = document.createElement('span')
+    chip.className = 'aksel-chips__chip plate-chip'
+    chip.dataset.plate = String(p)
+    chip.textContent = `${formatKg(p)} kg`
+    li.appendChild(chip)
+    list.appendChild(li)
   }
 }
 
@@ -322,10 +332,12 @@ function renderSummary(
   ]
 
   for (const it of items) {
-    const pill = document.createElement('span')
-    pill.className = 'pill muted'
-    pill.textContent = `${it.label}: ${it.value}`
-    summaryEl.appendChild(pill)
+    const tag = document.createElement('span')
+    tag.className = 'aksel-tag'
+    tag.dataset.variant = 'moderate'
+    tag.dataset.color = 'neutral'
+    tag.textContent = `${it.label}: ${it.value}`
+    summaryEl.appendChild(tag)
   }
 }
 
@@ -408,7 +420,33 @@ function resetForm() {
   setResultHidden(true)
 }
 
+function setupExpansionCard(cardEl) {
+  if (!cardEl) return
+  const header = cardEl.querySelector('.aksel-expansioncard__header')
+  const content = cardEl.querySelector('.aksel-expansioncard__content')
+  const toggle = cardEl.querySelector('.aksel-expansioncard__header-button')
+  if (!header || !content || !toggle) return
+
+  const setOpen = (open) => {
+    header.dataset.open = open ? 'true' : 'false'
+    content.dataset.open = open ? 'true' : 'false'
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false')
+  }
+
+  const initialOpen =
+    header.dataset.open === 'true' || content.dataset.open === 'true'
+  setOpen(initialOpen)
+
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault()
+    const nextOpen = header.dataset.open !== 'true'
+    setOpen(nextOpen)
+  })
+}
+
 function main() {
+  setupExpansionCard(document.getElementById('inventoryCard'))
+
   const form = document.getElementById('plate-form')
   form.addEventListener('submit', onSubmit)
 
